@@ -1,6 +1,6 @@
 class Student{
     constructor(name){
-        this.name = name;
+        this.name = name || Student.name;
     }
 
     sayHi(msg) {
@@ -14,7 +14,7 @@ class Student{
 
 class Developer{
     constructor(name){
-        this.name = name;
+        this.name = name || Developer.name;
     }
 
     sayHi(msg) {
@@ -26,10 +26,8 @@ class Developer{
     }
 }
 
-exports.name = 'yuyy'
+exports.name = 'yuyongyu'
 
-exports = Student
+exports.Student = Student
 
-module.exports = Developer
-
-exports.name = 'yuyy'
+module.exports.Developer = Developer

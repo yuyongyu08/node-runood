@@ -1,28 +1,49 @@
 let http = require('http');
-let URL = require('url');
+let url = require('url');
 let qs = require('querystring');
 
 //请求地址 http://yuyy:yyy@sub.example.com:8000/path?query=string#hash
 
 function handleURL(req, res){
-    let urlObj = new URL(req.url);
-    console.log(`urlObj: ${urlObj}`)
+    let urlObj = url.parse(req.url);
+    let qsObj = qs.parse(urlObj.query);
+    let str = getListTmpl('url', urlObj) + getListTmpl('qs', qsObj)
 
-    res.end()
+    res.writeHead(200, {"Content-Type": "text/html"});
+    res.write(str);
+    res.end();
+}
+
+function getListTmpl(listTitle, data){
+    let tmpl = `<h2>${listTitle}</h2><ul>`
+    Object.keys(data).forEach((key) => {
+        tmpl += `<li>${key}: ${data[key]} </li>`
+    })
+    tmpl += '</ul>'
+
+    return tmpl
 }
 
 function route(req, res){
     let handlers = {};
     handlers['/path'] = handleURL
 
-    handlers[URL.parse(req.url).pathname](req, res)
+    let pathname = url.parse(req.url).pathname;
+    let handler = handlers[pathname];
+    if(typeof handler == 'function'){
+        handler(req, res)
+    }else{
+        res.writeHead(404, {"Content-Type": "text/plain"});
+        res.write("not found");
+        res.end();
+    }
 }
 
 
 http.createServer(function(req, res){
-    console.log(req);
-
     route(req, res);
 
     console.log('请求完成')
 }).listen(8000);
+
+console.log('server started!');

@@ -4,12 +4,18 @@ sayName('yyy');
 
 
 let Person = require('./2-module.exports.js')
-
 let p = new Person('yuyy');
 p.sayHi();
 p.sayName();
 
 
-let Student = require('./3-exports-vs-module.exports.js')
+let { name, Student, Developer } = require('./3-exports-vs-module.exports.js')
 
-console.log(Student)
+console.log(name);
+
+let s = new Student();
+s.sayName();
+
+
+let d = new Developer();
+d.sayName();
