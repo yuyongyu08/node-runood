@@ -2,6 +2,8 @@ Object.keys(global).forEach((key, index) => {
     console.log(`${index}.${key}:`)
 });
 
+console.dir(global)
+
 
 // 0.console:
 // 1.DTRACE_NET_SERVER_CONNECTION:
