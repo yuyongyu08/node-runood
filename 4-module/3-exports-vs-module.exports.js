@@ -31,3 +31,5 @@ exports.name = 'yuyongyu'
 exports.Student = Student
 
 module.exports.Developer = Developer
+
+//exports和module.exports指向同一个对象

@@ -13,3 +13,5 @@ class Person{
 }
 
 module.exports = Person;
+
+//对外只暴露一个值时用module.exports
