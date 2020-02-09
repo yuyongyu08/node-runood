@@ -1,4 +1,4 @@
-let counter = 0
+let counter = 1
 let person = {
     name: 'yuyy', 
     age: 18
