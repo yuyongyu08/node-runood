@@ -7,6 +7,7 @@ myEmitter.on('connect', () => {
 
     myEmitter.emit('dataReceived');
 
+    //closeConnect时间是once，即便是多次调用，只会执行一次
     myEmitter.emit('closeConnect');
     myEmitter.emit('closeConnect');
 
